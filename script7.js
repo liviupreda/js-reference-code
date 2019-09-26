@@ -83,43 +83,69 @@
 // console.log(c); // Uncaught ReferenceError: c is not defined
 
 // -- STRINGS
-let firstName = 'John';
-let lastName = 'Smith';
-const yearOfBirth = 1990;
+// let firstName = 'John';
+// let lastName = 'Smith';
+// const yearOfBirth = 1990;
 
-function calcAge(year) {
-  return 2019 - year;
-}
+// function calcAge(year) {
+//   return 2019 - year;
+// }
 
-// ES5
-console.log(
-  'This is ' +
-    firstName +
-    ' ' +
-    lastName +
-    '. He was born in ' +
-    yearOfBirth +
-    '. Today, he is ' +
-    calcAge(yearOfBirth) +
-    ' years old.'
-);
+// // ES5
+// console.log(
+//   'This is ' +
+//     firstName +
+//     ' ' +
+//     lastName +
+//     '. He was born in ' +
+//     yearOfBirth +
+//     '. Today, he is ' +
+//     calcAge(yearOfBirth) +
+//     ' years old.'
+// );
 
-// -- Template literals
-// ES6
-console.log(
-  `This is ${firstName} ${lastName}. He was born in ${yearOfBirth}. Today, he is ${calcAge(
-    yearOfBirth
-  )} years old.`
-);
+// // -- Template literals
+// // ES6
+// console.log(
+//   `This is ${firstName} ${lastName}. He was born in ${yearOfBirth}. Today, he is ${calcAge(
+//     yearOfBirth
+//   )} years old.`
+// );
 
-// New string methods
-const name = `${firstName} ${lastName}`;
-console.log(name.startsWith('J')); // true
-console.log(name.startsWith('j')); // false
-console.log(name.endsWith('th')); // true
-console.log(name.endsWith('Th')); // false
-console.log(name.includes(' ')); // true
-console.log(name.includes('ohn')); // true
-console.log(firstName.repeat(3)); // JohnJohnJohn
-console.log(firstName.repeat(3)); // JohnJohnJohn
-console.log(`${firstName} `.repeat(3)); // John John John
+// // New string methods
+// const name = `${firstName} ${lastName}`;
+// console.log(name.startsWith('J')); // true
+// console.log(name.startsWith('j')); // false
+// console.log(name.endsWith('th')); // true
+// console.log(name.endsWith('Th')); // false
+// console.log(name.includes(' ')); // true
+// console.log(name.includes('ohn')); // true
+// console.log(firstName.repeat(3)); // JohnJohnJohn
+// console.log(firstName.repeat(3)); // JohnJohnJohn
+// console.log(`${firstName} `.repeat(3)); // John John John
+
+// -- ARROW FUNCTIONS
+
+const years = [1990, 1965, 1982, 1937];
+
+// // ES5
+// var ages5 = years.map(function(element) {
+//   return 2019 - element;
+// });
+// console.log(ages5);
+
+// // ES6
+// let ages6 = years.map(element => 2019 - element);
+// console.log(ages6);
+
+// ages6 = years.map(
+//   (element, index) => `Age element ${index + 1}: ${2019 - element}.`
+// );
+// console.log(ages6);
+
+let ages6 = years.map((element, index) => {
+  const now = new Date().getFullYear();
+  const age = now - element;
+  return `Age element ${index + 1}: ${age}.`;
+});
+console.log(ages6);
