@@ -66,14 +66,14 @@
 // // use a block instead of IIFEs for data privacy
 
 // // ES 6
-{
-  const a = 1;
-  let b = 2;
-  var c = 3;
-}
+// {
+//   const a = 1;
+//   let b = 2;
+//   var c = 3;
+// }
 
 // console.log(a + b); // script7.js:73 Uncaught ReferenceError: a is not defined
-console.log(c); // 3
+// console.log(c); // 3
 
 // ES5
 // (function() {
@@ -81,3 +81,45 @@ console.log(c); // 3
 // })();
 
 // console.log(c); // Uncaught ReferenceError: c is not defined
+
+// -- STRINGS
+let firstName = 'John';
+let lastName = 'Smith';
+const yearOfBirth = 1990;
+
+function calcAge(year) {
+  return 2019 - year;
+}
+
+// ES5
+console.log(
+  'This is ' +
+    firstName +
+    ' ' +
+    lastName +
+    '. He was born in ' +
+    yearOfBirth +
+    '. Today, he is ' +
+    calcAge(yearOfBirth) +
+    ' years old.'
+);
+
+// -- Template literals
+// ES6
+console.log(
+  `This is ${firstName} ${lastName}. He was born in ${yearOfBirth}. Today, he is ${calcAge(
+    yearOfBirth
+  )} years old.`
+);
+
+// New string methods
+const name = `${firstName} ${lastName}`;
+console.log(name.startsWith('J')); // true
+console.log(name.startsWith('j')); // false
+console.log(name.endsWith('th')); // true
+console.log(name.endsWith('Th')); // false
+console.log(name.includes(' ')); // true
+console.log(name.includes('ohn')); // true
+console.log(firstName.repeat(3)); // JohnJohnJohn
+console.log(firstName.repeat(3)); // JohnJohnJohn
+console.log(`${firstName} `.repeat(3)); // John John John
