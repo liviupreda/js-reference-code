@@ -277,7 +277,7 @@
 // console.log(retirement);
 
 // -- ARRAYS IN ES6
-const boxes = document.querySelectorAll('.box'); // returns node list
+// const boxes = document.querySelectorAll('.box'); // returns node list
 
 // // ES5
 // // // transform node list to array
@@ -289,8 +289,8 @@ const boxes = document.querySelectorAll('.box'); // returns node list
 
 //ES6
 // transform node list to array with FROM Array method
-const boxesArr6 = Array.from(boxes);
-Array.from(boxes).forEach(curr => (curr.style.backgroundColor = 'dodgerblue'));
+// const boxesArr6 = Array.from(boxes);
+// Array.from(boxes).forEach(curr => (curr.style.backgroundColor = 'dodgerblue'));
 
 // loop through the array and change the text for box1 and box3 to
 // 'Changed to blue'
@@ -305,17 +305,17 @@ Array.from(boxes).forEach(curr => (curr.style.backgroundColor = 'dodgerblue'));
 
 // ES6
 // using for ... of
-for (const curr of boxesArr6) {
-  if (curr.className.includes('blue')) continue;
-  curr.textContent = 'Changed to blue';
-}
+// for (const curr of boxesArr6) {
+//   if (curr.className.includes('blue')) continue;
+//   curr.textContent = 'Changed to blue';
+// }
 
 // New Methods to finds elements in an array
 // Having an array of ages, we know only 1 person is of full age 18
 // We want to print what his/ her age is
 
 //ES5
-var ages = [12, 17, 8, 21, 14, 11];
+// var ages = [12, 17, 8, 21, 14, 11];
 
 // var fullAge = ages.map(function(curr) {
 //   return curr >= 18;
@@ -329,6 +329,42 @@ var ages = [12, 17, 8, 21, 14, 11];
 
 //ES6: findIndex , find
 // ages.findIndex(curr => curr >= 18); // position 3
-console.log(
-  `The full age person is ${ages.find(curr => curr >= 18)} years old`
-);
+// console.log(
+//   `The full age person is ${ages.find(curr => curr >= 18)} years old`
+// );
+
+// -- SPREAD OPERATOR
+// function addFourAges(a, b, c, d) {
+//   return a + b + c + d;
+// }
+
+// var sum1 = addFourAges(18, 30, 12, 21);
+// console.log(sum1); // 81
+
+// Pass an entire array into the addFourAges function
+// ES5
+// var ages = [18, 30, 12, 21];
+// we can use the apply() method to call the function with the array values
+// var sum2 = addFourAges.apply(null, ages); // this variable is null in this case
+// console.log(sum2); // 81
+
+// ES6
+// const sum3 = addFourAges(...ages); // spread operator EXPANDS an array into its components
+// console.log(sum3);
+
+// Join arrays
+// const familySmith = ['John', 'Jane', 'Mark'];
+// const familyMiller = ['Mary', 'Bob', 'Ann'];
+// const extendedFamily = [...familySmith, 'Lily', ...familyMiller];
+// Lily will be introduced between the two joined arrays, forming an array
+// length = 7
+// console.log(extendedFamily);
+
+// Spread operator and node lists
+// select the heading and 3 boxes and change the text color of all 4 elements
+// to yellow
+const h = document.querySelector('h1'); // node
+const boxes = document.querySelectorAll('.box'); // node list
+const all = [h, ...boxes];
+// convert node list to an array
+Array.from(all).forEach(curr => (curr.style.color = 'yellow'));
