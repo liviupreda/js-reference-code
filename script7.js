@@ -126,7 +126,7 @@
 
 // -- ARROW FUNCTIONS
 
-const years = [1990, 1965, 1982, 1937];
+// const years = [1990, 1965, 1982, 1937];
 
 // // ES5
 // var ages5 = years.map(function(element) {
@@ -172,22 +172,22 @@ const years = [1990, 1965, 1982, 1937];
 // box5.clickMe();
 
 //ES6
-const box6 = {
-  color: 'green',
-  position: 1,
-  clickMe: function() {
-    // arrow fct shares this with the function it is written in
-    document.querySelector('.green').addEventListener('click', () => {
-      // regular function declaration for the callback; this does not
-      // point to the object
-      // but to the global object => position and color = undefined
-      var string =
-        'This is box number ' + this.position + ' and color is ' + this.color;
-      alert(string);
-    });
-  }
-};
-box6.clickMe();
+// const box6 = {
+//   color: 'green',
+//   position: 1,
+//   clickMe: function() {
+//     // arrow fct shares this with the function it is written in
+//     document.querySelector('.green').addEventListener('click', () => {
+//       // regular function declaration for the callback; this does not
+//       // point to the object
+//       // but to the global object => position and color = undefined
+//       var string =
+//         'This is box number ' + this.position + ' and color is ' + this.color;
+//       alert(string);
+//     });
+//   }
+// };
+// box6.clickMe();
 
 // const box6_2 = {
 //   color: 'green',
@@ -228,16 +228,50 @@ box6.clickMe();
 // new Person('John').myFriends5(friends);
 
 // ES6
-function Person(name) {
-  this.name = name;
-}
+// function Person(name) {
+//   this.name = name;
+// }
 
-Person.prototype.myFriends6 = function(friends) {
-  const array = friends.map(
-    element => `${this.name} is friends with ${element}`
-  );
-  console.log(array);
-};
+// Person.prototype.myFriends6 = function(friends) {
+//   const array = friends.map(
+//     element => `${this.name} is friends with ${element}`
+//   );
+//   console.log(array);
+// };
 
-let friends = ['Bob', 'Jane', 'Mark'];
-new Person('Cici').myFriends6(friends);
+// let friends = ['Bob', 'Jane', 'Mark'];
+// new Person('Cici').myFriends6(friends);
+
+// -- DESTRUCTURING - extract values from arrays,
+// or properties from objects, into distinct variables.
+
+//ES5
+// var john = ['John', 26];
+// var name = john[0];
+// var age = john[1];
+
+// ES6
+// const [name, year] = ['John', 26]; // array destructuring
+// console.log(name);
+// console.log(year);
+
+// const obj = {
+//   firstName: 'John',
+//   lastName: 'Smith'
+// };
+
+// const { firstName, lastName } = obj; // object destructuring
+// console.log(firstName, lastName);
+
+// const { firstName: a, lastName: b } = obj;
+// console.log(a, b);
+
+// Return multiple values from a function
+// function calcAgeRetirement(year) {
+//   const age = new Date().getFullYear() - year;
+//   return [age, 65 - age]; // 65 = retirement age
+// }
+
+// const [age, retirement] = calcAgeRetirement(1985);
+// console.log(age);
+// console.log(retirement);
