@@ -452,44 +452,85 @@
 // const map = new Map(Object.entries({foo: 'bar'}));
 
 // Quiz structure
-const question = new Map();
-question.set('question', 'What is the official name of ES6?');
-question.set(1, 'ES5'); // 1 = 1st answer
-question.set(2, 'ES6');
-question.set(3, 'ECMAScript 2015');
-question.set(4, 'ES7');
-question.set('correct', 3);
-question.set(true, 'Correct Answer <3');
-question.set(false, 'Wrong answer, please try again.');
+// const question = new Map();
+// question.set('question', 'What is the official name of ES6?');
+// question.set(1, 'ES5'); // 1 = 1st answer
+// question.set(2, 'ES6');
+// question.set(3, 'ECMAScript 2015');
+// question.set(4, 'ES7');
+// question.set('correct', 3);
+// question.set(true, 'Correct Answer <3');
+// question.set(false, 'Wrong answer, please try again.');
 
-console.log(question.get('question'));
-// console.log(question.size); // length of the map
+// console.log(question.get('question'));
+// // console.log(question.size); // length of the map
 
-// if (question.has(4)) {
-//   // question.delete(4); // removes key 4
-//   console.log('Answer 4 is in the map');
+// // if (question.has(4)) {
+// //   // question.delete(4); // removes key 4
+// //   console.log('Answer 4 is in the map');
+// // }
+
+// // question.delete(4); // if key 4 already removed, does nothing
+
+// // question.clear(); // clears the entire map
+
+// // -- Looping through maps
+// // 1) forEach
+// // question.forEach((value, key) =>
+// //   console.log(`This is ${key}, and it is set to ${value}`)
+// // );
+
+// // 2) for ... of; .entries method destructures the values of the Map
+// // this type of destructuring also works for arrays
+// for (let [key, value] of question.entries()) {
+//   // only print the value if the key is a number
+//   if (typeof key === 'number') {
+//     console.log(`Answer ${key}: ${value}`);
+//   }
 // }
 
-// question.delete(4); // if key 4 already removed, does nothing
+// const answer = parseInt(prompt('Please provide the correct answer'));
+// // convert the answer string to a number
+// // provide the message based on answer true/ false
+// console.log(question.get(answer === question.get('correct'))); // true / false
 
-// question.clear(); // clears the entire map
+// CLASSES
+// ES5 blueprints = function constructors
+var Person5 = function(name, yearOfBirth, job) {
+  this.name = name;
+  this.yearOfBirth = yearOfBirth;
+  this.job = job;
+};
+// methods
+Person5.prototype.calculateAge = function() {
+  var age = new Date().getFullYear - this.yearOfBirth;
+  console.log(age);
+};
+// instantiate the Person5 object - prototypal inheritance
+var john5 = new Person5('John', 1990, 'teacher');
 
-// -- Looping through maps
-// 1) forEach
-// question.forEach((value, key) =>
-//   console.log(`This is ${key}, and it is set to ${value}`)
-// );
+// ES6
+class Person6 {
+  // constructor
+  constructor(name, yearOfBirth, job) {
+    this.name = name;
+    this.yearOfBirth = yearOfBirth;
+    this.job = job;
+  }
 
-// 2) for ... of; .entries method destructures the values of the Map
-// this type of destructuring also works for arrays
-for (let [key, value] of question.entries()) {
-  // only print the value if the key is a number
-  if (typeof key === 'number') {
-    console.log(`Answer ${key}: ${value}`);
+  // methods
+  calculateAge() {
+    let age = new Date().getFullYear - this.yearOfBirth;
+    console.log(age);
+  }
+
+  //static methods; attached to the class, but not inherited by the class instances
+  static greeting() {
+    console.log('Hello there!');
   }
 }
 
-const answer = parseInt(prompt('Please provide the correct answer'));
-// convert the answer string to a number
-// provide the message based on answer true/ false
-console.log(question.get(answer === question.get('correct'))); // true / false
+// instantiate the class; john6 will not inherit static methods of the class Person6
+const john6 = new Person6('John', 1990, 'teacher');
+
+Person6.greeting();
