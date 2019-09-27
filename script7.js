@@ -363,8 +363,50 @@
 // Spread operator and node lists
 // select the heading and 3 boxes and change the text color of all 4 elements
 // to yellow
-const h = document.querySelector('h1'); // node
-const boxes = document.querySelectorAll('.box'); // node list
-const all = [h, ...boxes];
-// convert node list to an array
-Array.from(all).forEach(curr => (curr.style.color = 'yellow'));
+// const h = document.querySelector('h1'); // node
+// const boxes = document.querySelectorAll('.box'); // node list
+// const all = [h, ...boxes];
+// // convert node list to an array
+// Array.from(all).forEach(curr => (curr.style.color = 'yellow'));
+
+// -- FUNCTION PARAMETERS in ES6
+// -- REST PARAMETERS - take multiple arguments from the function and transform
+// them into an array (while spread operator breaks an array into single values)
+
+// ES5
+// function isFullAge5() {
+//   // console.log(arguments); // logs the function arguments
+//   // Transform the arguments object into an array
+//   var argsArr = Array.prototype.slice.call(arguments);
+
+//   // Loop through the array to calculate if each person is of full age
+//   argsArr.forEach(cur => console.log(2019 - cur >= 18));
+// }
+
+// // isFullAge5(1990, 2014, 1965);
+// // isFullAge5(1990, 2014, 1965, 2016, 1987);
+
+// // ES6 rest parameters
+// function isFullAge6(...years) {
+//   // transforms the arguments into an array and passed it in the function; we can then access the arguments array
+//   years.forEach(cur => console.log(2019 - cur >= 18));
+// }
+
+// // isFullAge6(1990, 2014, 1965); // returns an array with the years
+// isFullAge6(1990, 2014, 1965, 2016, 1987);
+
+// ES5
+// function isFullAge5(limit) {
+//   var argsArr = Array.prototype.slice.call(arguments, 1); // exclude 1st argument; starts at position 1
+//   argsArr.forEach(cur => console.log(2019 - cur >= limit));
+// }
+
+// isFullAge5(21, 1990, 2014, 1965);
+// // isFullAge5(1990, 2014, 1965, 2016, 1987);
+
+// ES6
+function isFullAge6(limit, ...years) {
+  years.forEach(cur => console.log(2019 - cur >= limit));
+}
+
+isFullAge6(21, 1990, 2014, 1965, 2016, 1987);
