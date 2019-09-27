@@ -405,8 +405,42 @@
 // // isFullAge5(1990, 2014, 1965, 2016, 1987);
 
 // ES6
-function isFullAge6(limit, ...years) {
-  years.forEach(cur => console.log(2019 - cur >= limit));
+// function isFullAge6(limit, ...years) {
+//   years.forEach(cur => console.log(2019 - cur >= limit));
+// }
+
+// isFullAge6(21, 1990, 2014, 1965, 2016, 1987);
+
+// -- DEFAULT PARAMETERS
+// ES5
+// function SmithPerson(firstName, yearOfBirth, lastName, nationality) {
+//   // to assign default value for Last Name, we check if lastName = undefined
+//   lastName === undefined ? (lastName = 'Smith') : lastName;
+
+//   // same for nationality
+//   nationality === undefined ? (nationality = 'American') : nationality;
+
+//   this.firstName = firstName;
+//   this.lastName = lastName;
+//   this.yearOfBirth = yearOfBirth;
+//   this.nationality = nationality;
+// }
+
+// var john = new SmithPerson('John', 1990); // the other 2 params will = undefined
+// var emily = new SmithPerson('Emily', 1983, 'Diaz', 'Spanish');
+
+// ES6
+function SmithPerson(
+  firstName,
+  yearOfBirth,
+  lastName = 'Smith',
+  nationality = 'American'
+) {
+  this.firstName = firstName;
+  this.lastName = lastName;
+  this.yearOfBirth = yearOfBirth;
+  this.nationality = nationality;
 }
 
-isFullAge6(21, 1990, 2014, 1965, 2016, 1987);
+var john = new SmithPerson('John', 1990); // the other 2 params will = undefined
+var emily = new SmithPerson('Emily', 1983, 'Diaz', 'Spanish');
