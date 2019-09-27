@@ -275,3 +275,60 @@
 // const [age, retirement] = calcAgeRetirement(1985);
 // console.log(age);
 // console.log(retirement);
+
+// -- ARRAYS IN ES6
+const boxes = document.querySelectorAll('.box'); // returns node list
+
+// // ES5
+// // // transform node list to array
+// var boxesArr5 = Array.prototype.slice.call(boxes);
+// // change all boxes to .blue class
+// boxesArr5.forEach(function(curr) {
+//   curr.style.backgroundColor = 'dodgerblue';
+// });
+
+//ES6
+// transform node list to array with FROM Array method
+const boxesArr6 = Array.from(boxes);
+Array.from(boxes).forEach(curr => (curr.style.backgroundColor = 'dodgerblue'));
+
+// loop through the array and change the text for box1 and box3 to
+// 'Changed to blue'
+// ES5
+// for (var i = 0; i < boxesArr5.length; i++) {
+//   // continue the loop for the box that is already class .blue
+//   if (boxesArr5[i].classList.contains('blue')) {
+//     continue; // goes to next iteration of the loop
+//   }
+//   boxesArr5[i].textContent = 'Changed to blue';
+// }
+
+// ES6
+// using for ... of
+for (const curr of boxesArr6) {
+  if (curr.className.includes('blue')) continue;
+  curr.textContent = 'Changed to blue';
+}
+
+// New Methods to finds elements in an array
+// Having an array of ages, we know only 1 person is of full age 18
+// We want to print what his/ her age is
+
+//ES5
+var ages = [12, 17, 8, 21, 14, 11];
+
+// var fullAge = ages.map(function(curr) {
+//   return curr >= 18;
+// });
+
+// console.log(fullAge);
+// console.log(fullAge.indexOf(true)); // position 3
+// console.log(
+//   'The full age person is ' + ages[fullAge.indexOf(true)] + ' years old.'
+// );
+
+//ES6: findIndex , find
+// ages.findIndex(curr => curr >= 18); // position 3
+console.log(
+  `The full age person is ${ages.find(curr => curr >= 18)} years old`
+);
