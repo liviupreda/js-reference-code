@@ -494,43 +494,112 @@
 // // provide the message based on answer true/ false
 // console.log(question.get(answer === question.get('correct'))); // true / false
 
-// CLASSES
+// -- CLASSES
 // ES5 blueprints = function constructors
-var Person5 = function(name, yearOfBirth, job) {
-  this.name = name;
-  this.yearOfBirth = yearOfBirth;
-  this.job = job;
-};
-// methods
-Person5.prototype.calculateAge = function() {
-  var age = new Date().getFullYear - this.yearOfBirth;
-  console.log(age);
-};
-// instantiate the Person5 object - prototypal inheritance
-var john5 = new Person5('John', 1990, 'teacher');
+// var Person5 = function(name, yearOfBirth, job) {
+//   this.name = name;
+//   this.yearOfBirth = yearOfBirth;
+//   this.job = job;
+// };
+// // methods
+// Person5.prototype.calculateAge = function() {
+//   var age = new Date().getFullYear - this.yearOfBirth;
+//   console.log(age);
+// };
+// // instantiate the Person5 object - prototypal inheritance
+// var john5 = new Person5('John', 1990, 'teacher');
+
+// // ES6
+// // class definitions are NOT hoisted; unlike function constructors
+// // they need to be defined beforehand
+// class Person6 {
+//   // constructor
+//   constructor(name, yearOfBirth, job) {
+//     this.name = name;
+//     this.yearOfBirth = yearOfBirth;
+//     this.job = job;
+//   }
+
+//   // methods
+//   calculateAge() {
+//     let age = new Date().getFullYear - this.yearOfBirth;
+//     console.log(age);
+//   }
+
+//   //static methods; attached to the class, but not inherited by the class instances
+//   static greeting() {
+//     console.log('Hello there!');
+//   }
+// }
+
+// // instantiate the class; john6 will not inherit static methods of the class Person6
+// const john6 = new Person6('John', 1990, 'teacher');
+
+// Person6.greeting();
+
+// -- CLASS INHERITANCE (SUBCLASSES)
+// Person5 = superclass
+// var Person5 = function(name, yearOfBirth, job) {
+//   this.name = name;
+//   this.yearOfBirth = yearOfBirth;
+//   this.job = job;
+// };
+
+// // methods
+// Person5.prototype.calculateAge = function() {
+//   var age = new Date().getFullYear() - this.yearOfBirth;
+//   console.log(age);
+// };
+
+// var Athlete5 = function(name, yearOfBirth, job, olympicCount, medalCount) {
+//   // call superclass; when new Person Object is instantiated, it will
+//  // point at the Athlete5 empty object
+//   Person5.call(this, name, yearOfBirth, job);
+//   this.olympicCount = olympicCount;
+//   this.medalCount = medalCount;
+// };
+
+// // we use Object.create because we can manually set the proto
+// // we connect the Athlete proto to the Person proto
+// Athlete5.prototype = Object.create(Person5.prototype);
+
+// Athlete5.prototype.wonMedal = function() {
+//   this.medalCount++;
+//   console.log(this.medalCount);
+// };
+
+// var johnAthlete5 = new Athlete5('John', 1990, 'swimmer', 3, 10);
+
+// johnAthlete5.calculateAge();
+// johnAthlete5.wonMedal();
 
 // ES6
-class Person6 {
-  // constructor
-  constructor(name, yearOfBirth, job) {
-    this.name = name;
-    this.yearOfBirth = yearOfBirth;
-    this.job = job;
-  }
+// class Person6 {
+//   constructor(name, yearOfBirth, job) {
+//     this.name = name;
+//     this.yearOfBirth = yearOfBirth;
+//     this.job = job;
+//   }
 
-  // methods
-  calculateAge() {
-    let age = new Date().getFullYear - this.yearOfBirth;
-    console.log(age);
-  }
+//   calculateAge() {
+//     let age = new Date().getFullYear() - this.yearOfBirth;
+//     console.log(age);
+//   }
+// }
 
-  //static methods; attached to the class, but not inherited by the class instances
-  static greeting() {
-    console.log('Hello there!');
-  }
-}
+// // subclass
+// class Athlete6 extends Person6 {
+//   constructor(name, yearOfBirth, job, olympicCount, medalCount) {
+//     super(name, yearOfBirth, job); // this takes care automatically of calling the superclass and setting the this keyword
+//     this.olympicCount = olympicCount;
+//     this.medalCount = medalCount;
+//   }
+//   wonMedal() {
+//     this.medalCount++;
+//     console.log(this.medalCount);
+//   }
+// }
 
-// instantiate the class; john6 will not inherit static methods of the class Person6
-const john6 = new Person6('John', 1990, 'teacher');
-
-Person6.greeting();
+// const johnAthlete6 = new Athlete6('John', 1990, 'swimmer', 3, 10);
+// johnAthlete6.wonMedal();
+// johnAthlete6.calculateAge();
