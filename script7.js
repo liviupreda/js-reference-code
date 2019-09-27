@@ -143,9 +143,101 @@ const years = [1990, 1965, 1982, 1937];
 // );
 // console.log(ages6);
 
-let ages6 = years.map((element, index) => {
-  const now = new Date().getFullYear();
-  const age = now - element;
-  return `Age element ${index + 1}: ${age}.`;
-});
-console.log(ages6);
+// let ages6 = years.map((element, index) => {
+//   const now = new Date().getFullYear();
+//   const age = now - element;
+//   return `Age element ${index + 1}: ${age}.`;
+// });
+// console.log(ages6);
+
+// -- ARROW FUNCTIONS THIS KEYWORD
+// arrow functions use the .this keyword of the function they are written in
+// "lexical this"
+// ES5
+// var box5 = {
+//   color: 'green',
+//   position: 1,
+//   clickMe: function() {
+//     var self = this; // fix
+//     document.querySelector('.green').addEventListener('click', function() {
+//       // regular function declaration for the callback; this does not
+//       // point to the object
+//       // but to the global object => position and color = undefined
+//       var string =
+//         'This is box number ' + self.position + ' and color is ' + self.color;
+//       alert(string);
+//     });
+//   }
+// };
+// box5.clickMe();
+
+//ES6
+const box6 = {
+  color: 'green',
+  position: 1,
+  clickMe: function() {
+    // arrow fct shares this with the function it is written in
+    document.querySelector('.green').addEventListener('click', () => {
+      // regular function declaration for the callback; this does not
+      // point to the object
+      // but to the global object => position and color = undefined
+      var string =
+        'This is box number ' + this.position + ' and color is ' + this.color;
+      alert(string);
+    });
+  }
+};
+box6.clickMe();
+
+// const box6_2 = {
+//   color: 'green',
+//   position: 1,
+//   // do not use arrow functions for method calls
+//   // lexical this means that this points to global obj
+//   clickMe: () => {
+//     // arrow fct shares this with the function it is written in
+//     document.querySelector('.green').addEventListener('click', () => {
+//       // regular function declaration for the callback; this does not
+//       // point to the object
+//       // but to the global object => position and color = undefined
+//       var string =
+//         'This is box number ' + this.position + ' and color is ' + this.color;
+//       alert(string);
+//     });
+//   }
+// };
+// box6_2.clickMe();
+
+// ES5
+// function Person(name) {
+//   this.name = name;
+// }
+
+// Person.prototype.myFriends5 = function(friends) {
+//   var array = friends.map(
+//     function(element) {
+//       // callback in another function
+//       // this.name will return ''; in ES5 we fix this with bind / call
+//       return this.name + ' is friends with ' + element;
+//     }.bind(this) // this will now point to the object
+//   );
+//   console.log(array);
+// };
+
+// var friends = ['Bob', 'Jane', 'Mark'];
+// new Person('John').myFriends5(friends);
+
+// ES6
+function Person(name) {
+  this.name = name;
+}
+
+Person.prototype.myFriends6 = function(friends) {
+  const array = friends.map(
+    element => `${this.name} is friends with ${element}`
+  );
+  console.log(array);
+};
+
+let friends = ['Bob', 'Jane', 'Mark'];
+new Person('Cici').myFriends6(friends);
