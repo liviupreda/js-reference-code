@@ -430,17 +430,66 @@
 // var emily = new SmithPerson('Emily', 1983, 'Diaz', 'Spanish');
 
 // ES6
-function SmithPerson(
-  firstName,
-  yearOfBirth,
-  lastName = 'Smith',
-  nationality = 'American'
-) {
-  this.firstName = firstName;
-  this.lastName = lastName;
-  this.yearOfBirth = yearOfBirth;
-  this.nationality = nationality;
+// function SmithPerson(
+//   firstName,
+//   yearOfBirth,
+//   lastName = 'Smith',
+//   nationality = 'American'
+// ) {
+//   this.firstName = firstName;
+//   this.lastName = lastName;
+//   this.yearOfBirth = yearOfBirth;
+//   this.nationality = nationality;
+// }
+
+// var john = new SmithPerson('John', 1990); // the other 2 params will = undefined
+// var emily = new SmithPerson('Emily', 1983, 'Diaz', 'Spanish');
+
+// -- MAP DATA STRUCTURE in ES6 (same as hash tables, key: value pairs)
+// use any kind of primitive or objects as keys
+// Object literals vs. Maps
+// to convert an object to a map directly:
+// const map = new Map(Object.entries({foo: 'bar'}));
+
+// Quiz structure
+const question = new Map();
+question.set('question', 'What is the official name of ES6?');
+question.set(1, 'ES5'); // 1 = 1st answer
+question.set(2, 'ES6');
+question.set(3, 'ECMAScript 2015');
+question.set(4, 'ES7');
+question.set('correct', 3);
+question.set(true, 'Correct Answer <3');
+question.set(false, 'Wrong answer, please try again.');
+
+console.log(question.get('question'));
+// console.log(question.size); // length of the map
+
+// if (question.has(4)) {
+//   // question.delete(4); // removes key 4
+//   console.log('Answer 4 is in the map');
+// }
+
+// question.delete(4); // if key 4 already removed, does nothing
+
+// question.clear(); // clears the entire map
+
+// -- Looping through maps
+// 1) forEach
+// question.forEach((value, key) =>
+//   console.log(`This is ${key}, and it is set to ${value}`)
+// );
+
+// 2) for ... of; .entries method destructures the values of the Map
+// this type of destructuring also works for arrays
+for (let [key, value] of question.entries()) {
+  // only print the value if the key is a number
+  if (typeof key === 'number') {
+    console.log(`Answer ${key}: ${value}`);
+  }
 }
 
-var john = new SmithPerson('John', 1990); // the other 2 params will = undefined
-var emily = new SmithPerson('Emily', 1983, 'Diaz', 'Spanish');
+const answer = parseInt(prompt('Please provide the correct answer'));
+// convert the answer string to a number
+// provide the message based on answer true/ false
+console.log(question.get(answer === question.get('correct'))); // true / false
