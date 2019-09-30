@@ -173,4 +173,30 @@
 //     })
 //     .catch(error => console.log(error));
 // }
+// getWeather(2487956);
 // getWeather(44418);
+
+// -- AJAX CALLS WITH FETCH & ASYNC/ AWAIT
+async function getWeatherAW(woeid) {
+  // try to execute the code in {} and if there is an error, catch it
+  try {
+    const result = await fetch(
+      `https://www.metaweather.com/api/location/${woeid}/`
+    );
+    const jsonData = await result.json();
+    const tomorrow = jsonData.consolidated_weather[1];
+    console.log(
+      `Temperatures tomorrow in ${jsonData.title} between ${tomorrow.min_temp} and ${tomorrow.max_temp}.`
+    );
+    return jsonData; // return a promise with the resolved value jsonData
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+getWeatherAW(2487956);
+let dataLondon;
+getWeatherAW(44418).then(data => {
+  dataLondon = data;
+  console.log(dataLondon);
+});
