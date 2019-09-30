@@ -96,57 +96,81 @@
 //   });
 
 // -- ASYNC/ AWAIT ES8 - designed to CONSUME PROMISES, not to produce them
-const getIDs = new Promise((resolve, reject) => {
-  setTimeout(() => {
-    resolve([523, 883, 432, 974]);
-    // no need to call the reject function here. setTimeout always finishes
-  }, 1500);
-});
+// const getIDs = new Promise((resolve, reject) => {
+//   setTimeout(() => {
+//     resolve([523, 883, 432, 974]);
+//     // no need to call the reject function here. setTimeout always finishes
+//   }, 1500);
+// });
 
-// function that receives ID and returns a promise
-const getRecipe = recID => {
-  return new Promise((resolve, reject) => {
-    setTimeout(
-      id => {
-        const recipe = { title: 'Pasta Bolognese', publisher: 'Liv' };
-        resolve(`${id}: ${recipe.title} by ${recipe.publisher}`);
-      },
-      1500,
-      recID
-    );
-  });
-};
+// // function that receives ID and returns a promise
+// const getRecipe = recID => {
+//   return new Promise((resolve, reject) => {
+//     setTimeout(
+//       id => {
+//         const recipe = { title: 'Pasta Bolognese', publisher: 'Liv' };
+//         resolve(`${id}: ${recipe.title} by ${recipe.publisher}`);
+//       },
+//       1500,
+//       recID
+//     );
+//   });
+// };
 
-const getRelated = publisher => {
-  return new Promise((resolve, reject) => {
-    setTimeout(
-      pub => {
-        const recipe = { title: 'Pizza al Cippola', publisher: 'Liv' };
-        resolve(`${pub}: ${recipe.title}`);
-      },
-      1500,
-      publisher
-    );
-  });
-};
+// const getRelated = publisher => {
+//   return new Promise((resolve, reject) => {
+//     setTimeout(
+//       pub => {
+//         const recipe = { title: 'Pizza al Cippola', publisher: 'Liv' };
+//         resolve(`${pub}: ${recipe.title}`);
+//       },
+//       1500,
+//       publisher
+//     );
+//   });
+// };
 
-// Asynchronous function; runs in the background and is non- blocking
-// returns a promise; Await can only be used inside an async function,
-// because it stops the code in that function from executing
-// until the promise is resolved
-async function getRecipesAW() {
-  // consume the three promises
-  const IDs = await getIDs; // stops the code from executing until promise is resolved
-  console.log(IDs);
-  const recipe = await getRecipe(IDs[2]);
-  console.log(recipe);
-  const related = await getRelated('Liviu Preda');
-  console.log(related);
+// // Asynchronous function; runs in the background and is non- blocking
+// // returns a promise; Await can only be used inside an async function,
+// // because it stops the code in that function from executing
+// // until the promise is resolved
+// async function getRecipesAW() {
+//   // consume the three promises
+//   const IDs = await getIDs; // stops the code from executing until promise is resolved
+//   console.log(IDs);
+//   const recipe = await getRecipe(IDs[2]);
+//   console.log(recipe);
+//   const related = await getRelated('Liviu Preda');
+//   console.log(related);
 
-  // If we return a value from an async function, the
-  // returned promise from the function will be resolved with that same value
-  return recipe;
-}
-getRecipesAW().then(promiseResult =>
-  console.log(`${promiseResult} async return test`)
-);
+//   // If we return a value from an async function, the
+//   // returned promise from the function will be resolved with that same value
+//   return recipe;
+// }
+// getRecipesAW().then(promiseResult =>
+//   console.log(`${promiseResult} async return test`)
+// );
+
+// -- AJAX CALLS WITH FETCH API & PROMISES
+// Fetch fires a request, automatically returns a promise
+//  and then we handle the response (consume the promise)
+
+// function getWeather(woeid) {
+//   // where on earth ID
+
+//   fetch(`https://www.metaweather.com/api/location/${woeid}/`)
+//     .then(result => {
+//       console.log(result);
+//       return result.json(); // convert the result to JSON async,
+//       // => returns a promise too
+//     })
+//     .then(jsonData => {
+//       // console.log(jsonData);
+//       const today = jsonData.consolidated_weather[0];
+//       console.log(
+//         `Temperatures in ${jsonData.title} between ${today.min_temp} and ${today.max_temp}.`
+//       );
+//     })
+//     .catch(error => console.log(error));
+// }
+// getWeather(44418);
